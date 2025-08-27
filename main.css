@@ -5,20 +5,20 @@ html {
 }
 
 body {
-    background-color: #f4f4f4;
+    background-color: #001d4f;
 }
 
 html, body {
-    color: #333;
+    color: #f5f0e9;
 }
 
 a {
     text-decoration: none;
-    color: #1565c1;
+    color: #b1b7e1;
 }
 
 a:hover {
-    color: #217ee7;
+    color: #b1b7e1;
 }
 
 #content {
@@ -55,9 +55,9 @@ a:hover {
 }
 
 .icons a {
-    color: black;
+    color: #f5f0e9;
 }
 
 .icons a:hover {
-    color: #1565c0;
+    color: #b1b7e1;
 }
