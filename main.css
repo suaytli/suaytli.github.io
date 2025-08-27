@@ -4,9 +4,17 @@ html {
     font-weight: 300;
 }
 
+body {
+    background-color: #f4f4f4;
+}
+
+html, body {
+    color: #333;
+}
+
 a {
     text-decoration: none;
-    color: #1565c0;
+    color: #1565c1;
 }
 
 a:hover {
