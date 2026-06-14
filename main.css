@@ -260,6 +260,15 @@ body {
   color: #c0c0c0;
 }
 
+/* NEW INTRO STYLES */
+.asm-intro {
+  text-align: justify;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #0000ff;
+  margin-bottom: 50px;
+}
+
 .asm-stats {
   text-align: right;
   display: flex;
