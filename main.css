@@ -285,3 +285,15 @@ body {
   margin-top: 30px;
   margin-bottom: 20px;
 }
+
+/* --- RESPONSIVE EMBEDS --- */
+.spotify-embed {
+  width: 50%;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .spotify-embed {
+    width: 100%;
+  }
+}
