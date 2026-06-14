@@ -1,8 +1,9 @@
 body {
-  background-color: #fdfdfd;
+  background-color: #EFE6DE;
   background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
   background-size: 15px 15px; 
-  color: #111111; 
+  color: #191265; 
+  /* Kept Georgia for highly readable long-form text */
   font-family: Georgia, "Times New Roman", serif;
   margin: 0;
   padding: 0;
@@ -16,15 +17,16 @@ body {
 }
 
 .top-nav a {
-  color: #888;
+  color: #191265;
   text-decoration: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .top-nav a:hover {
-  color: #000; 
+  color: #8CB4FF; 
 }
 
 .blog-post {
@@ -34,12 +36,13 @@ body {
 }
 
 .post-title {
+  font-family: Helvetica, sans-serif;
   font-size: 3.8rem;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: -1px;
   margin-top: 0;
   margin-bottom: 40px;
-  color: #000000;
+  color: #191265;
 }
 
 .post-content p {
@@ -63,8 +66,9 @@ body {
 }
 
 .post-meta {
-  color: #666666;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #191265;
+  opacity: 0.7; /* Makes the date look slightly faded without adding a new gray color */
+  font-family: Helvetica, sans-serif;
   font-size: 1.05rem;
   margin-top: -30px; 
   margin-bottom: 30px;
