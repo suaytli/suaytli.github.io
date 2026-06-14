@@ -1,12 +1,8 @@
 body {
-
-  body {
   background-color: #fdfdfd;
   background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
   background-size: 15px 15px; 
-  
   margin: 0;
-  /* Removed the flex centering so the page can scroll */
   font-family: "Courier New", Courier, monospace; 
   color: #001960;
 }
@@ -16,7 +12,6 @@ body {
   gap: 80px;
   max-width: 1000px;
   width: 90%;
-  /* Centers the hero section and gives it top/bottom breathing room */
   margin: 10vh auto 15vh auto; 
   align-items: center;
 }
@@ -33,7 +28,6 @@ body {
   max-width: 450px; 
   height: auto; 
   border: 2px solid #0000ff; 
-
   margin-right: 25px; 
 }
 
@@ -105,8 +99,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  
-  /* Stack everything */
   .main-container {
     flex-direction: column; 
     width: 100%;
@@ -154,8 +146,9 @@ body {
     max-width: 100%; 
     margin-top: 25px;
   }
+}
 
-  /* --- SCROLL FEED STYLES --- */
+/* --- SCROLL FEED STYLES --- */
 
 .scroll-container {
   max-width: 800px;
@@ -224,7 +217,7 @@ body {
   color: #00ffff;
 }
 
-  /* --- ANTISOCIAL MEDIA BLOG STYLES --- */
+/* --- ANTISOCIAL MEDIA BLOG STYLES --- */
 
 .asm-container {
   max-width: 800px;
@@ -264,7 +257,7 @@ body {
 }
 
 .asm-quote {
-  color: #c0c0c0; /* Light gray quotation marks */
+  color: #c0c0c0;
 }
 
 .asm-stats {
@@ -280,7 +273,6 @@ body {
   color: #0000ff;
   line-height: 0.8;
   margin: 0 0 10px 0;
-  /* Creates the cyan highlight on the bottom half of the number */
   background: linear-gradient(transparent 50%, #00ffff 50%);
   display: inline-block;
   padding: 0 5px;
@@ -292,7 +284,4 @@ body {
   color: #0000ff;
   margin-top: 30px;
   margin-bottom: 20px;
-}
-  
-  
 }
