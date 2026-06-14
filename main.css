@@ -154,4 +154,74 @@ body {
     max-width: 100%; 
     margin-top: 25px;
   }
+
+  /* --- SCROLL FEED STYLES --- */
+
+.scroll-container {
+  max-width: 800px;
+  margin: 0 auto 100px auto; 
+  padding: 0 20px;
+}
+
+.section-title {
+  font-family: "Arial Black", "Impact", sans-serif;
+  font-size: 3rem;
+  color: #0000ff;
+  border-bottom: 2px dotted #0000ff; 
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+}
+
+.feed-card {
+  border: 3px double #0000ff; 
+  padding: 30px;
+  margin-bottom: 40px;
+  background-color: transparent; 
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px dotted #0000ff;
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.feed-date {
+  font-family: "Arial Black", "Impact", sans-serif;
+  font-size: 2.5rem;
+  color: #0000ff;
+  margin: 0;
+}
+
+.feed-heading {
+  font-family: "Arial Black", "Impact", sans-serif;
+  font-size: 1.5rem;
+  color: #0000ff;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.feed-text {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #0000ff; 
+}
+
+.cyan-tag {
+  background-color: #00ffff;
+  color: #0000ff;
+  padding: 2px 6px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.cyan-tag:hover {
+  background-color: #0000ff;
+  color: #00ffff;
+}
+  
 }
