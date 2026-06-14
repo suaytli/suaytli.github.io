@@ -1,17 +1,14 @@
 body {
+
+  body {
   background-color: #fdfdfd;
   background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
   background-size: 15px 15px; 
   
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
+  /* Removed the flex centering so the page can scroll */
   font-family: "Courier New", Courier, monospace; 
   color: #001960;
-  
 }
 
 .main-container {
@@ -19,6 +16,8 @@ body {
   gap: 80px;
   max-width: 1000px;
   width: 90%;
+  /* Centers the hero section and gives it top/bottom breathing room */
+  margin: 10vh auto 15vh auto; 
   align-items: center;
 }
 
