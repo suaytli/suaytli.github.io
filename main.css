@@ -266,7 +266,6 @@ body {
   color: #c0c0c0;
 }
 
-/* NEW INTRO STYLES */
 .asm-intro {
   text-align: justify;
   font-size: 0.85rem;
@@ -303,7 +302,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* --- RESPONSIVE EMBEDS --- */
 .spotify-embed {
   width: 50%;
   display: block;
@@ -312,5 +310,57 @@ body {
 @media (max-width: 900px) {
   .spotify-embed {
     width: 100%;
+  }
+}
+
+/* --- WRITING INDEX LIST STYLES --- */
+
+.writing-list {
+  list-style-type: none; /* Removes the default bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Creates consistent vertical spacing between each entry */
+}
+
+.writing-item {
+  display: flex;
+  align-items: baseline; 
+}
+
+.writing-date {
+  font-family: "Courier New", Courier, monospace;
+  color: #191265;
+  opacity: 0.7; /* Fades the date slightly so the title remains the focal point */
+  min-width: 110px; 
+  flex-shrink: 0; 
+  font-size: 0.95rem;
+}
+
+.writing-link {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  color: #191265;
+  text-decoration: none;
+  font-size: 1.15rem;
+  border-bottom: 2px dotted transparent; 
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.writing-link:hover {
+  color: #8CB4FF;
+  border-bottom: 2px dotted #8CB4FF;
+}
+
+/* Mobile adjustments so the list doesn't get awkwardly squeezed */
+@media (max-width: 600px) {
+  .writing-item {
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+  .writing-date {
+    font-size: 0.85rem;
   }
 }
