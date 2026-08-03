@@ -1,3 +1,4 @@
+
 body {
   background-color: #EFE6DE;
   background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
@@ -316,12 +317,12 @@ body {
 /* --- WRITING INDEX LIST STYLES --- */
 
 .writing-list {
-  list-style-type: none; /* Removes the default bullet points */
+  list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Creates consistent vertical spacing between each entry */
+  gap: 15px; 
 }
 
 .writing-item {
@@ -332,7 +333,7 @@ body {
 .writing-date {
   font-family: "Courier New", Courier, monospace;
   color: #191265;
-  opacity: 0.7; /* Fades the date slightly so the title remains the focal point */
+  opacity: 0.7; 
   min-width: 110px; 
   flex-shrink: 0; 
   font-size: 0.95rem;
@@ -353,7 +354,6 @@ body {
   border-bottom: 2px dotted #8CB4FF;
 }
 
-/* Mobile adjustments so the list doesn't get awkwardly squeezed */
 @media (max-width: 600px) {
   .writing-item {
     flex-direction: column;
@@ -367,45 +367,142 @@ body {
 
 /* --- IPE GLOSSARY STYLES --- */
 
-.glossary-item {
-  /* Keeps the accordion behavior contained */
-}
-
 .glossary-summary {
   cursor: pointer;
-  list-style: none; /* Removes the default HTML arrow triangle */
+  list-style: none; 
 }
 
-/* Removes default arrow in Safari */
 .glossary-summary::-webkit-details-marker {
   display: none;
 }
 
-/* Triggers the blue highlight on hover just like your links do */
 .glossary-summary:hover .writing-link {
   color: #8CB4FF;
   border-bottom: 2px dotted #8CB4FF;
 }
 
 .glossary-definition {
-  padding-left: 110px; /* Aligns the paragraph exactly with the term title, bypassing the 110px date span */
+  padding-left: 110px; 
   margin-top: 10px;
   padding-bottom: 15px;
   border-bottom: 1px dotted #191265;
 }
 
 .glossary-definition p {
-  font-family: Georgia, "Times New Roman", serif; /* Matches your essay vibe for high readability */
+  font-family: Georgia, "Times New Roman", serif; 
   font-size: 1.05rem;
   line-height: 1.6;
   margin: 0;
   text-align: justify;
 }
 
-/* Mobile adjustments for glossary */
 @media (max-width: 600px) {
   .glossary-definition {
     padding-left: 0;
     margin-top: 15px;
   }
+}
+
+/* --- 321 QUESTIONS MACHINE STYLES --- */
+
+.q-machine {
+  border: 3px double #191265;
+  padding: 40px 30px;
+  margin-bottom: 40px;
+  background-color: transparent;
+}
+
+.q-controls {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.q-input {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #191265;
+  background-color: transparent;
+  border: 2px dashed #191265;
+  padding: 10px;
+  width: 120px;
+  text-align: center;
+  outline: none;
+}
+
+.q-input:focus {
+  border: 2px solid #8CB4FF;
+  background-color: #ffffff;
+}
+
+.q-btn {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #EFE6DE;
+  background-color: #191265;
+  border: 2px solid #191265;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.q-btn:hover {
+  background-color: #8CB4FF;
+  color: #191265;
+}
+
+.random-btn {
+  background-color: #8CB4FF;
+  color: #191265;
+  border-color: #8CB4FF;
+}
+
+.random-btn:hover {
+  background-color: #191265;
+  color: #8CB4FF;
+  border-color: #191265;
+}
+
+.q-display {
+  font-family: Helvetica, sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #191265;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px dotted #191265;
+  padding-top: 40px;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+.q-placeholder {
+  color: #191265;
+  opacity: 0.4;
+  font-family: "Courier New", Courier, monospace;
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+.q-number-tag {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  color: #EFE6DE;
+  background-color: #191265;
+  padding: 4px 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
