@@ -364,3 +364,48 @@ body {
     font-size: 0.85rem;
   }
 }
+
+/* --- IPE GLOSSARY STYLES --- */
+
+.glossary-item {
+  /* Keeps the accordion behavior contained */
+}
+
+.glossary-summary {
+  cursor: pointer;
+  list-style: none; /* Removes the default HTML arrow triangle */
+}
+
+/* Removes default arrow in Safari */
+.glossary-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Triggers the blue highlight on hover just like your links do */
+.glossary-summary:hover .writing-link {
+  color: #8CB4FF;
+  border-bottom: 2px dotted #8CB4FF;
+}
+
+.glossary-definition {
+  padding-left: 110px; /* Aligns the paragraph exactly with the term title, bypassing the 110px date span */
+  margin-top: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px dotted #191265;
+}
+
+.glossary-definition p {
+  font-family: Georgia, "Times New Roman", serif; /* Matches your essay vibe for high readability */
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Mobile adjustments for glossary */
+@media (max-width: 600px) {
+  .glossary-definition {
+    padding-left: 0;
+    margin-top: 15px;
+  }
+}
