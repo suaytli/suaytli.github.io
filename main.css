@@ -506,6 +506,14 @@ body {
   letter-spacing: 1px;
 }
 
+/* --- STANDALONE DIVIDER --- */
+.dotted-divider {
+  border: none;
+  border-top: 2px dotted #191265;
+  margin: 40px 0;
+  width: 100%;
+}
+
 /* --- HTML NATIVE CV STYLES --- */
 
 .cv-header {
