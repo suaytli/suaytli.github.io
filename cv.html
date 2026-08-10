@@ -8,6 +8,28 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="main.css?v=12" rel="stylesheet" type="text/css" media="all">
 
+  <!-- Turkish-safe font fallbacks (fixes missing İ, ı, ğ, ş, ç, ö, ü glyphs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&family=Noto+Serif:ital,wght@0,400;1,400&family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Same font stacks as main.css, with Noto equivalents inserted first
+       so Turkish characters render correctly. Visual weight/size unchanged. */
+    #cv-en, #cv-tr,
+    #cv-en *, #cv-tr * {
+      font-family: "Noto Sans Mono", "Courier New", Courier, monospace;
+    }
+    #cv-en .cv-name, #cv-tr .cv-name,
+    #cv-en .cv-section-title, #cv-tr .cv-section-title,
+    #cv-en .cv-role, #cv-tr .cv-role {
+      font-family: "Noto Sans", Helvetica, sans-serif;
+    }
+    #cv-en .cv-org, #cv-tr .cv-org,
+    #cv-en .cv-list li, #cv-tr .cv-list li {
+      font-family: "Noto Serif", Georgia, "Times New Roman", serif;
+    }
+  </style>
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCJQ44WMD5"></script>
 <script>
