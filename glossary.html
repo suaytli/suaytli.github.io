@@ -6,7 +6,7 @@
   <title>IPE Glossary - Suay</title>
   
   <link rel="icon" type="image/png" href="favicon.png">
-  <link href="main.css?v=10" rel="stylesheet" type="text/css" media="all">
+  <link href="main.css?v=13" rel="stylesheet" type="text/css" media="all">
 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCJQ44WMD5"></script>
@@ -33,11 +33,22 @@
     </div>
 
     <p class="asm-intro">
-      This is a curated International Political Economy (IPE) glossary. From my IPE course with Sırma Altun Demir to my own readings, I want to gather important terms and explain them in my own words. Since I am already building this knowledge base in Obsidian, why not open the doors so everyone can browse it? You can find terms by searching (Ctrl + F) for the IPE, Asia, Digital, History, and Theory tags!
+      This is a curated International Political Economy (IPE) glossary. From my IPE course with Sırma Altun Demir to my own readings, I want to gather important terms and explain them in my own words. Since I am already building this knowledge base in Obsidian, why not open the doors so everyone can browse it? Filter by tag below, or just Ctrl + F for a specific term!
     </p>
 
+    <!-- TAG FILTER BAR -->
+    <div class="tag-filter-bar" id="tag-filter-bar">
+      <button class="tag-filter-btn active" data-tag="all">All</button>
+      <button class="tag-filter-btn" data-tag="IPE">IPE</button>
+      <button class="tag-filter-btn" data-tag="Asia">Asia</button>
+      <button class="tag-filter-btn" data-tag="Digital">Digital</button>
+      <button class="tag-filter-btn" data-tag="History">History</button>
+      <button class="tag-filter-btn" data-tag="Theory">Theory</button>
+      <span class="tag-filter-count" id="tag-filter-count"></span>
+    </div>
+
     <!-- THE GLOSSARY DIRECTORY -->
-    <div class="writing-list">
+    <div class="writing-list" id="glossary-list">
 
       <details class="glossary-item">
         <summary class="writing-item glossary-summary">
@@ -602,23 +613,57 @@
         </div>
       </details>
 
-
-<hr class="dotted-divider">
-      
-            <details class="glossary-item">
-        <summary class="writing-item glossary-summary">
-          <span class="writing-date">Theory</span>
-          <span class="writing-link">Lorem Ipsum</span>
-          <span class="reading-time">[+]</span>
-        </summary>
-        <div class="glossary-definition">
-          <p>Lorem ipsum the text.</p>
-        </div>
-      </details>
-
     </div>
 
   </div>
+
+  <!-- TAG FILTER ENGINE -->
+  <script>
+    const filterBtns = document.querySelectorAll('.tag-filter-btn');
+    const entries = document.querySelectorAll('#glossary-list .glossary-item');
+    const countLabel = document.getElementById('tag-filter-count');
+    let activeTags = new Set(['all']);
+
+    function updateCount() {
+      const visible = [...entries].filter(e => e.style.display !== 'none').length;
+      countLabel.textContent = `${visible} / ${entries.length} terms`;
+    }
+
+    function applyFilter() {
+      entries.forEach(entry => {
+        const tag = entry.querySelector('.writing-date').textContent.trim();
+        const show = activeTags.has('all') || activeTags.has(tag);
+        entry.style.display = show ? '' : 'none';
+      });
+      updateCount();
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+
+        if (tag === 'all') {
+          activeTags = new Set(['all']);
+        } else {
+          activeTags.delete('all');
+          if (activeTags.has(tag)) {
+            activeTags.delete(tag);
+          } else {
+            activeTags.add(tag);
+          }
+          if (activeTags.size === 0) activeTags.add('all');
+        }
+
+        filterBtns.forEach(b => {
+          b.classList.toggle('active', activeTags.has(b.dataset.tag));
+        });
+
+        applyFilter();
+      });
+    });
+
+    updateCount();
+  </script>
 
 </body>
 </html>
