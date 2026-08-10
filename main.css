@@ -1,18 +1,44 @@
-body {
-  background-color: #EFE6DE;
-  background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
-  background-size: 15px 15px; 
-  margin: 0;
-  font-family: "Courier New", Courier, monospace; 
-  color: #191265;
+:root {
+  --color-bg: #EFE6DE;
+  --color-navy: #191265;
+  --color-blue: #8CB4FF;
+  --color-dot: #d0d0d0;
+  --color-white: #ffffff;
+  --color-offwhite: #f0f0f0;
+  --color-gray: #c0c0c0;
 }
+
+/* ==========================================================================
+   GLOBAL / BASE
+   ========================================================================== */
+
+body {
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+  background-size: 15px 15px;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  color: var(--color-navy);
+}
+
+/* Standalone dotted divider, reusable anywhere */
+.dotted-divider {
+  border: none;
+  border-top: 2px dotted var(--color-navy);
+  margin: 40px 0;
+  width: 100%;
+}
+
+/* ==========================================================================
+   HOMEPAGE — HERO / LANDING LAYOUT (index.html)
+   ========================================================================== */
 
 .main-container {
   display: flex;
   gap: 80px;
   max-width: 1000px;
   width: 90%;
-  margin: 10vh auto 15vh auto; 
+  margin: 10vh auto 15vh auto;
   align-items: center;
 }
 
@@ -20,15 +46,15 @@ body {
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  min-width: 0; 
+  min-width: 0;
 }
 
 .hero-image {
-  width: 100%; 
-  max-width: 450px; 
-  height: auto; 
-  border: 2px solid #191265; 
-  margin-right: 25px; 
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border: 2px solid var(--color-navy);
+  margin-right: 25px;
 }
 
 .text-column {
@@ -57,8 +83,8 @@ body {
 }
 
 .title-top {
-  background-color: #191265;
-  color: #ffffff;
+  background-color: var(--color-navy);
+  color: var(--color-white);
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 4rem;
@@ -69,8 +95,8 @@ body {
 }
 
 .title-bottom {
-  background-color: #f0f0f0;
-  color: #191265;
+  background-color: var(--color-offwhite);
+  color: var(--color-navy);
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 4rem;
@@ -88,73 +114,25 @@ body {
 }
 
 .highlight {
-  background-color: #8CB4FF;
-  color: #191265;
+  background-color: var(--color-blue);
+  color: var(--color-navy);
   text-decoration: none;
   padding: 0 4px;
   font-weight: bold;
 }
 
 .highlight:hover {
-  background-color: #191265;
-  color: #8CB4FF;
+  background-color: var(--color-navy);
+  color: var(--color-blue);
 }
 
-@media (max-width: 900px) {
-  .main-container {
-    flex-direction: column; 
-    width: 100%;
-    padding: 25px; 
-    box-sizing: border-box; 
-    margin-top: 20px;
-    gap: 30px;
-  }
-
-  .graphic-column {
-    order: -1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-image {
-    width: 100%; 
-    max-width: 400px; 
-    min-height: 250px;
-    margin-right: 0;
-  }
-
-  .text-column {
-    order: 2; 
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .welcome {
-    font-size: 1.5rem; 
-    margin-bottom: 10px;
-  }
-
-  .title-top, 
-  .title-bottom {
-    font-size: 3.1rem; 
-    padding: 8px 18px; 
-    line-height: 1.1;
-  }
-
-  .bio {
-    font-size: 1.15rem; 
-    line-height: 1.8;
-    max-width: 100%; 
-    margin-top: 25px;
-  }
-}
-
-/* --- SCROLL FEED STYLES --- */
+/* ==========================================================================
+   SCROLL FEED STYLES
+   ========================================================================== */
 
 .scroll-container {
   max-width: 800px;
-  margin: 0 auto 100px auto; 
+  margin: 0 auto 100px auto;
   padding: 0 20px;
 }
 
@@ -162,24 +140,24 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 3rem;
-  color: #191265;
-  border-bottom: 2px dotted #191265; 
+  color: var(--color-navy);
+  border-bottom: 2px dotted var(--color-navy);
   padding-bottom: 10px;
   margin-bottom: 40px;
 }
 
 .feed-card {
-  border: 3px double #191265; 
+  border: 3px double var(--color-navy);
   padding: 30px;
   margin-bottom: 40px;
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 .feed-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 2px dotted #191265;
+  border-bottom: 2px dotted var(--color-navy);
   padding-bottom: 10px;
   margin-top: 0;
   margin-bottom: 30px;
@@ -189,7 +167,7 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 2.5rem;
-  color: #191265;
+  color: var(--color-navy);
   margin: 0;
 }
 
@@ -197,7 +175,7 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1.5rem;
-  color: #191265;
+  color: var(--color-navy);
   margin-top: 30px;
   margin-bottom: 15px;
 }
@@ -205,12 +183,12 @@ body {
 .feed-text {
   line-height: 1.6;
   font-size: 1rem;
-  color: #191265; 
+  color: var(--color-navy);
 }
 
 .cyan-tag {
-  background-color: #8CB4FF;
-  color: #191265;
+  background-color: var(--color-blue);
+  color: var(--color-navy);
   padding: 2px 6px;
   font-weight: bold;
   text-decoration: none;
@@ -218,11 +196,13 @@ body {
 }
 
 .cyan-tag:hover {
-  background-color: #191265;
-  color: #8CB4FF;
+  background-color: var(--color-navy);
+  color: var(--color-blue);
 }
 
-/* --- ANTISOCIAL MEDIA BLOG STYLES --- */
+/* ==========================================================================
+   ANTISOCIAL MEDIA BLOG STYLES (antisocial.html)
+   ========================================================================== */
 
 .asm-container {
   max-width: 800px;
@@ -240,14 +220,14 @@ body {
 }
 
 .blue-text {
-  color: #191265;
+  color: var(--color-navy);
 }
 
 .asm-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 2px dotted #191265;
+  border-bottom: 2px dotted var(--color-navy);
   padding-bottom: 15px;
   margin-bottom: 40px;
 }
@@ -256,21 +236,21 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 4.5rem;
-  color: #191265;
+  color: var(--color-navy);
   margin: 0;
   line-height: 1;
   letter-spacing: -2px;
 }
 
 .asm-quote {
-  color: #c0c0c0;
+  color: var(--color-gray);
 }
 
 .asm-intro {
   text-align: justify;
   font-size: 0.85rem;
   line-height: 1.6;
-  color: #191265;
+  color: var(--color-navy);
   margin-bottom: 50px;
 }
 
@@ -285,10 +265,10 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 3.5rem;
-  color: #191265;
+  color: var(--color-navy);
   line-height: 0.8;
   margin: 0 0 10px 0;
-  background: linear-gradient(transparent 50%, #8CB4FF 50%);
+  background: linear-gradient(transparent 50%, var(--color-blue) 50%);
   display: inline-block;
   padding: 0 5px;
 }
@@ -297,7 +277,7 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 2rem;
-  color: #191265;
+  color: var(--color-navy);
   margin-top: 30px;
   margin-bottom: 20px;
 }
@@ -307,13 +287,9 @@ body {
   display: block;
 }
 
-@media (max-width: 900px) {
-  .spotify-embed {
-    width: 100%;
-  }
-}
-
-/* --- WRITING INDEX LIST STYLES --- */
+/* ==========================================================================
+   WRITING INDEX LIST STYLES (writing-index.html)
+   ========================================================================== */
 
 .writing-list {
   list-style-type: none;
@@ -321,54 +297,45 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 15px; 
+  gap: 15px;
 }
 
 .writing-item {
   display: flex;
-  align-items: baseline; 
+  align-items: baseline;
 }
 
 .writing-date {
   font-family: "Courier New", Courier, monospace;
-  color: #191265;
-  opacity: 0.7; 
-  min-width: 110px; 
-  flex-shrink: 0; 
+  color: var(--color-navy);
+  opacity: 0.7;
+  min-width: 110px;
+  flex-shrink: 0;
   font-size: 0.95rem;
 }
 
 .writing-link {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
-  color: #191265;
+  color: var(--color-navy);
   text-decoration: none;
   font-size: 1.15rem;
-  border-bottom: 2px dotted transparent; 
+  border-bottom: 2px dotted transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .writing-link:hover {
-  color: #8CB4FF;
-  border-bottom: 2px dotted #8CB4FF;
+  color: var(--color-blue);
+  border-bottom: 2px dotted var(--color-blue);
 }
 
-@media (max-width: 600px) {
-  .writing-item {
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 20px;
-  }
-  .writing-date {
-    font-size: 0.85rem;
-  }
-}
-
-/* --- IPE GLOSSARY STYLES --- */
+/* ==========================================================================
+   IPE GLOSSARY STYLES (glossary.html)
+   ========================================================================== */
 
 .glossary-summary {
   cursor: pointer;
-  list-style: none; 
+  list-style: none;
 }
 
 .glossary-summary::-webkit-details-marker {
@@ -376,36 +343,31 @@ body {
 }
 
 .glossary-summary:hover .writing-link {
-  color: #8CB4FF;
-  border-bottom: 2px dotted #8CB4FF;
+  color: var(--color-blue);
+  border-bottom: 2px dotted var(--color-blue);
 }
 
 .glossary-definition {
-  padding-left: 110px; 
+  padding-left: 110px;
   margin-top: 10px;
   padding-bottom: 15px;
-  border-bottom: 1px dotted #191265;
+  border-bottom: 1px dotted var(--color-navy);
 }
 
 .glossary-definition p {
-  font-family: Georgia, "Times New Roman", serif; 
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 1.05rem;
   line-height: 1.6;
   margin: 0;
   text-align: justify;
 }
 
-@media (max-width: 600px) {
-  .glossary-definition {
-    padding-left: 0;
-    margin-top: 15px;
-  }
-}
-
-/* --- 321 QUESTIONS MACHINE STYLES --- */
+/* ==========================================================================
+   321 QUESTIONS MACHINE STYLES (questions.html)
+   ========================================================================== */
 
 .q-machine {
-  border: 3px double #191265;
+  border: 3px double var(--color-navy);
   padding: 40px 30px;
   margin-bottom: 40px;
   background-color: transparent;
@@ -424,9 +386,9 @@ body {
   font-family: "Courier New", Courier, monospace;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #191265;
+  color: var(--color-navy);
   background-color: transparent;
-  border: 2px dashed #191265;
+  border: 2px dashed var(--color-navy);
   padding: 10px;
   width: 120px;
   text-align: center;
@@ -434,17 +396,17 @@ body {
 }
 
 .q-input:focus {
-  border: 2px solid #8CB4FF;
-  background-color: #ffffff;
+  border: 2px solid var(--color-blue);
+  background-color: var(--color-white);
 }
 
 .q-btn {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1.1rem;
-  color: #EFE6DE;
-  background-color: #191265;
-  border: 2px solid #191265;
+  color: var(--color-bg);
+  background-color: var(--color-navy);
+  border: 2px solid var(--color-navy);
   padding: 10px 20px;
   cursor: pointer;
   text-transform: uppercase;
@@ -452,33 +414,33 @@ body {
 }
 
 .q-btn:hover {
-  background-color: #8CB4FF;
-  color: #191265;
+  background-color: var(--color-blue);
+  color: var(--color-navy);
 }
 
 .random-btn {
-  background-color: #8CB4FF;
-  color: #191265;
-  border-color: #8CB4FF;
+  background-color: var(--color-blue);
+  color: var(--color-navy);
+  border-color: var(--color-blue);
 }
 
 .random-btn:hover {
-  background-color: #191265;
-  color: #8CB4FF;
-  border-color: #191265;
+  background-color: var(--color-navy);
+  color: var(--color-blue);
+  border-color: var(--color-navy);
 }
 
 .q-display {
   font-family: Helvetica, sans-serif;
   font-size: 2.2rem;
   font-weight: bold;
-  color: #191265;
+  color: var(--color-navy);
   min-height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-top: 2px dotted #191265;
+  border-top: 2px dotted var(--color-navy);
   padding-top: 40px;
   line-height: 1.1;
   text-align: center;
@@ -486,7 +448,7 @@ body {
 }
 
 .q-placeholder {
-  color: #191265;
+  color: var(--color-navy);
   opacity: 0.4;
   font-family: "Courier New", Courier, monospace;
   font-style: italic;
@@ -498,23 +460,17 @@ body {
 .q-number-tag {
   font-family: "Courier New", Courier, monospace;
   font-size: 0.9rem;
-  color: #EFE6DE;
-  background-color: #191265;
+  color: var(--color-bg);
+  background-color: var(--color-navy);
   padding: 4px 10px;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* --- STANDALONE DIVIDER --- */
-.dotted-divider {
-  border: none;
-  border-top: 2px dotted #191265;
-  margin: 40px 0;
-  width: 100%;
-}
-
-/* --- HTML NATIVE CV STYLES --- */
+/* ==========================================================================
+   HTML NATIVE CV STYLES (cv.html)
+   ========================================================================== */
 
 .cv-header {
   text-align: center;
@@ -525,7 +481,7 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 3.5rem;
-  color: #191265;
+  color: var(--color-navy);
   margin: 0 0 15px 0;
   letter-spacing: -2px;
 }
@@ -541,7 +497,7 @@ body {
 }
 
 .cv-divider {
-  color: #191265;
+  color: var(--color-navy);
   opacity: 0.5;
 }
 
@@ -553,9 +509,9 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1.8rem;
-  color: #191265;
+  color: var(--color-navy);
   text-transform: uppercase;
-  border-bottom: 2px dotted #191265;
+  border-bottom: 2px dotted var(--color-navy);
   padding-bottom: 5px;
   margin-bottom: 25px;
 }
@@ -575,13 +531,13 @@ body {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1.2rem;
-  color: #191265;
+  color: var(--color-navy);
 }
 
 .cv-date {
   font-family: "Courier New", Courier, monospace;
   font-size: 0.9rem;
-  color: #191265;
+  color: var(--color-navy);
   opacity: 0.8;
   text-align: right;
   flex-shrink: 0;
@@ -592,7 +548,7 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   font-size: 1rem;
-  color: #191265;
+  color: var(--color-navy);
   margin-bottom: 8px;
 }
 
@@ -606,7 +562,7 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: #191265;
+  color: var(--color-navy);
   margin-bottom: 4px;
 }
 
@@ -614,11 +570,91 @@ body {
   margin-bottom: 8px;
 }
 
+/* ==========================================================================
+   RESPONSIVE — TABLET (≤900px)
+   All rules from every 900px block in the old file, consolidated here.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    gap: 30px;
+  }
+
+  .graphic-column {
+    order: -1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 400px;
+    min-height: 250px;
+    margin-right: 0;
+  }
+
+  .text-column {
+    order: 2;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .welcome {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .title-top,
+  .title-bottom {
+    font-size: 3.1rem;
+    padding: 8px 18px;
+    line-height: 1.1;
+  }
+
+  .bio {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 100%;
+    margin-top: 25px;
+  }
+
+  .spotify-embed {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE — MOBILE (≤600px)
+   All rules from every 600px block in the old file, consolidated here.
+   ========================================================================== */
+
 @media (max-width: 600px) {
+  .writing-item {
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  .writing-date {
+    font-size: 0.85rem;
+  }
+
+  .glossary-definition {
+    padding-left: 0;
+    margin-top: 15px;
+  }
+
   .cv-entry-header {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .cv-date {
     margin-left: 0;
     margin-top: 2px;
