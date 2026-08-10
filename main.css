@@ -1,3 +1,9 @@
+/* ==========================================================================
+   SUAY'S WEB — MAIN STYLESHEET
+   Color system: beige bg, navy ink, pastel blue accent
+   Type system: Courier New (body/UI), Helvetica (headlines), Georgia (long-form)
+   ========================================================================== */
+
 :root {
   --color-bg: #EFE6DE;
   --color-navy: #191265;
@@ -360,6 +366,60 @@ body {
   line-height: 1.6;
   margin: 0;
   text-align: justify;
+}
+
+/* --- Tag filter bar --- */
+
+.tag-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 2px dotted var(--color-navy);
+}
+
+.tag-filter-btn {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-navy);
+  background-color: transparent;
+  border: 2px solid var(--color-navy);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tag-filter-btn:hover {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+  color: var(--color-navy);
+}
+
+.tag-filter-btn.active {
+  background-color: var(--color-navy);
+  border-color: var(--color-navy);
+  color: var(--color-bg);
+}
+
+.tag-filter-count {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.85rem;
+  color: var(--color-navy);
+  opacity: 0.6;
+  margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .tag-filter-count {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
 }
 
 /* ==========================================================================
