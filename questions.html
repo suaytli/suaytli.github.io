@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>321 Questions - Suay</title>
+  <title>Random Questions - Suay</title>
   
   <link rel="icon" type="image/png" href="favicon.png">
-  <link href="main.css?v=11" rel="stylesheet" type="text/css" media="all">
+  <link href="main.css?v=13" rel="stylesheet" type="text/css" media="all">
 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCJQ44WMD5"></script>
@@ -24,17 +24,29 @@
     
     <div class="asm-nav">
       <div>
-        <a href="index.html" class="cyan-tag">Home</a> <span class="blue-text">> 321 Questions</span>
+        <a href="index.html" class="cyan-tag">Home</a> <span class="blue-text">> Random Questions</span>
       </div>
     </div>
 
     <div class="asm-header">
-      <h1 class="asm-title"><span class="asm-quote">“</span>321 Questions<span class="asm-quote">”</span></h1>
+      <h1 class="asm-title"><span class="asm-quote">"</span><span id="page-title">Random Questions</span><span class="asm-quote">"</span></h1>
     </div>
 
-    <p class="asm-intro">
+    <!-- SET TOGGLE -->
+    <div class="tag-filter-bar">
+      <button id="set-321" class="tag-filter-btn active" data-set="321">321 Questions</button>
+      <button id="set-ice" class="tag-filter-btn" data-set="ice">300 Icebreakers</button>
+    </div>
+
+    <p class="asm-intro" id="set-intro">
       This is an archive of 321 questions my friends and I put together to bypass the usual small talk. Pull a number or let the machine decide whenever the conversation hits a dead end.
     </p>
+
+    <!-- THEME FILTER (icebreaker set only) -->
+    <div class="tag-filter-bar" id="theme-filter-bar" style="display: none;">
+      <button class="tag-filter-btn active" data-theme="all">All Themes</button>
+      <span class="tag-filter-count" id="theme-filter-count"></span>
+    </div>
 
     <!-- THE QUESTION MACHINE -->
     <div class="q-machine">
@@ -379,28 +391,441 @@
       `When all questions have been answered by science, what will remain for the human soul to explore?`
     ];
 
+    const icebreakers = [
+      { text: `What's a rule you follow in your work that no one ever actually told you to follow?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's something you do every day that you'd struggle to explain the origin of?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a habit you picked up from a job that has nothing to do with the job itself?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a 'correct' way of doing something you were taught that you've quietly started ignoring?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a routine you have that would look strange to someone watching from outside?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's something you were taught to be embarrassed about that you've stopped being embarrassed about?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a boundary you keep that other people in your life don't seem to have?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's something you assumed was universal until you found out it was just your family?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a word or phrase you use that you picked up from one specific person?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's an unwritten rule in your industry that outsiders would find bizarre?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's something you do out of superstition that you'd never admit to out loud?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a habit from childhood you still catch yourself doing?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a 'should' in your life that you've never actually examined?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a tradition you keep that's stopped meaning what it originally meant?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's something you do differently in private than you do in public, for no real reason?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a piece of etiquette you follow that you think is actually kind of pointless?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a way you were raised that you're actively trying to not repeat?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's something you do 'the hard way' out of habit, even though there's an easier way?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a small ritual you have before doing something stressful?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a rule at your job that exists for a reason nobody currently there remembers?`, theme: `Invisible Rules & Inherited Habits` },
+      { text: `What's a decision that felt small at the time but ended up shaping a big part of your life?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you got into by accident that you're now genuinely good at?`, theme: `Turning Points & Accidents` },
+      { text: `What's a class, book, or conversation that quietly redirected your path?`, theme: `Turning Points & Accidents` },
+      { text: `What's a job you almost took that would've sent your life somewhere completely different?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you tried once as a joke and ended up sticking with?`, theme: `Turning Points & Accidents` },
+      { text: `What's a moment where being in the wrong place at the right time worked out for you?`, theme: `Turning Points & Accidents` },
+      { text: `What's a skill you learned for one reason that turned out to be useful for something else entirely?`, theme: `Turning Points & Accidents` },
+      { text: `What's a plan that fell through that you're now grateful fell through?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you only did because a friend dragged you into it?`, theme: `Turning Points & Accidents` },
+      { text: `What's a city, job, or relationship you ended up in almost by chance?`, theme: `Turning Points & Accidents` },
+      { text: `What's the most consequential thing you've ever decided on a whim?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you quit that you now wonder 'what if' about?`, theme: `Turning Points & Accidents` },
+      { text: `What's a person who showed up briefly in your life but left a disproportionate mark?`, theme: `Turning Points & Accidents` },
+      { text: `What's a failure that quietly redirected you toward something better?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you said yes to purely because you were too tired to say no, that turned out well?`, theme: `Turning Points & Accidents` },
+      { text: `What's a hobby that unexpectedly became relevant to your career?`, theme: `Turning Points & Accidents` },
+      { text: `What's a moment you can point to as 'before' and 'after' in how you think?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you avoided for years that turned out to be much less scary than expected?`, theme: `Turning Points & Accidents` },
+      { text: `What's a risk that paid off in a way you couldn't have predicted?`, theme: `Turning Points & Accidents` },
+      { text: `What's the most random reason you ended up living where you currently live?`, theme: `Turning Points & Accidents` },
+      { text: `What's something you used to be confident about that you've since changed your mind on?`, theme: `Changing Your Mind` },
+      { text: `What's an opinion you held strongly at 18 that you'd argue against now?`, theme: `Changing Your Mind` },
+      { text: `What's something you changed your mind on not because of an argument, but because life just showed you?`, theme: `Changing Your Mind` },
+      { text: `What's a belief you inherited that you eventually had to unlearn?`, theme: `Changing Your Mind` },
+      { text: `What's something you were sure you'd never do that you now do regularly?`, theme: `Changing Your Mind` },
+      { text: `What's a stance you've softened on as you've gotten older?`, theme: `Changing Your Mind` },
+      { text: `What's something you used to judge people for that you now understand better?`, theme: `Changing Your Mind` },
+      { text: `What's a piece of received wisdom you followed for years before questioning it?`, theme: `Changing Your Mind` },
+      { text: `What's something you thought was a personality trait that turned out to be a circumstance?`, theme: `Changing Your Mind` },
+      { text: `What's a food, place, or activity you thought you hated and later loved?`, theme: `Changing Your Mind` },
+      { text: `What's an assumption about how the world works that got quietly disproven for you?`, theme: `Changing Your Mind` },
+      { text: `What's something you were taught to fear that you've since made peace with?`, theme: `Changing Your Mind` },
+      { text: `What's a group of people you had a stereotype about that got broken by getting to know one person?`, theme: `Changing Your Mind` },
+      { text: `What's an opinion you hold now that you know your younger self would be shocked by?`, theme: `Changing Your Mind` },
+      { text: `What's something you thought was 'just how things are' that turned out to be a choice someone made?`, theme: `Changing Your Mind` },
+      { text: `What's a value you thought was fixed that turned out to be negotiable once tested?`, theme: `Changing Your Mind` },
+      { text: `What's something you were wrong about for a long time before realizing it?`, theme: `Changing Your Mind` },
+      { text: `What's a piece of advice you once dismissed that you now think was right?`, theme: `Changing Your Mind` },
+      { text: `What's a strong opinion you have that you've never actually had to defend out loud?`, theme: `Changing Your Mind` },
+      { text: `What's something you're currently in the process of changing your mind about?`, theme: `Changing Your Mind` },
+      { text: `What's a skill you have that almost nobody around you knows about?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you're weirdly good at that has never once been useful?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a piece of knowledge you have that's becoming obsolete, and how do you feel about that?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you had to unlearn how to do 'wrong' before you could do it well?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a skill you're proud of that took embarrassingly long to learn?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you know how to do that you learned entirely from necessity, not choice?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a piece of expertise you have that surprises people who meet you?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you used to be an expert in that you've completely lost touch with?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a task you're unreasonably fast at because you've done it so many times?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you can do with your hands that you never had to think about learning?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a skill from an old job that still shows up in how you do things now?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you're self-taught in that you're more confident in than things you were formally taught?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a piece of practical knowledge you wish was taught in school?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you know a strange amount about, purely by accident?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a skill you have that you think is going to matter less and less over time?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you're bad at that you've made peace with never fixing?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a talent someone in your family has that skipped you entirely?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you learned by watching someone else fail at it first?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a craft or trade skill you wish you'd learned when you had the chance?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's something you know how to fix that most people your age would just replace?`, theme: `Skills, Knowledge & Obsolescence` },
+      { text: `What's a place you lived that changed your sense of what 'normal' looks like?`, theme: `Places & How They Change You` },
+      { text: `What's something about your hometown you didn't appreciate until you left?`, theme: `Places & How They Change You` },
+      { text: `What's a habit you picked up in one country that felt strange bringing back to another?`, theme: `Places & How They Change You` },
+      { text: `What's a place that felt like home faster than it should have?`, theme: `Places & How They Change You` },
+      { text: `What's something about how time is treated differently in a place you've been?`, theme: `Places & How They Change You` },
+      { text: `What's a small daily thing that's done completely differently somewhere you've lived or visited?`, theme: `Places & How They Change You` },
+      { text: `What's a place you thought you'd love and didn't, or thought you'd hate and did?`, theme: `Places & How They Change You` },
+      { text: `What's something you now do because of how a specific city or culture does it?`, theme: `Places & How They Change You` },
+      { text: `What's a place that's changed enormously in your lifetime that you have real memories of?`, theme: `Places & How They Change You` },
+      { text: `What's something about your commute or neighborhood that quietly shapes your mood?`, theme: `Places & How They Change You` },
+      { text: `What's a place you'd move back to in a heartbeat if circumstances allowed?`, theme: `Places & How They Change You` },
+      { text: `What's something you didn't know was a 'local thing' until you tried explaining it to an outsider?`, theme: `Places & How They Change You` },
+      { text: `What's a place that taught you something about yourself you didn't expect to learn there?`, theme: `Places & How They Change You` },
+      { text: `What's a smell or sound that immediately puts you back in a specific place?`, theme: `Places & How They Change You` },
+      { text: `What's something about how strangers interact that differs wildly between places you've lived?`, theme: `Places & How They Change You` },
+      { text: `What's a place you've never been that you feel oddly connected to anyway?`, theme: `Places & How They Change You` },
+      { text: `What's something you had to relearn from scratch after moving somewhere new?`, theme: `Places & How They Change You` },
+      { text: `What's a place where you felt most like yourself, and why do you think that was?`, theme: `Places & How They Change You` },
+      { text: `What's something about your current city you'll miss the moment you leave it?`, theme: `Places & How They Change You` },
+      { text: `What's a border, checkpoint, or transition you crossed that changed how you saw something?`, theme: `Places & How They Change You` },
+      { text: `What's something you do now that you picked up from watching someone you admire?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a piece of advice from someone in your life that you didn't understand until much later?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you learned from a person you no longer talk to?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a way you argue or communicate that you can trace back to your family?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something a stranger once said to you that you still think about?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a friendship that changed shape over time in a way you didn't expect?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you do differently with friends now than you did in your twenties (or as a teenager)?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a quality in other people that you notice and admire because you feel you lack it?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you learned about relationships from watching your parents that you're trying to keep, or trying to avoid?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a small kindness from someone that had a bigger impact than they probably realize?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you only realized about a relationship in hindsight?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a way you show care for people that isn't obvious unless someone's paying attention?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a disagreement you had with someone that actually improved the relationship?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you've learned to accept about a person you love, rather than trying to change?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a mentor-like figure in your life who never officially held that role?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you do to maintain friendships that most people don't bother with?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a relationship you have that looks unconventional from the outside but works for you?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you had to learn to say no to, relationship-wise?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a way you've become more like a family member despite trying not to?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's something you appreciate about a difficult person in your life?`, theme: `Relationships & People Who Shaped You` },
+      { text: `What's a part of your job that would surprise people who only know the job title?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something you had to learn on the job that no one prepared you for?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a task you find satisfying that most people would find tedious?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something about how you work that's completely different from how you thought you'd work?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a project that taught you more than any class did?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a piece of office or industry jargon that sounds absurd once you say it out loud?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something you had to get comfortable being bad at before you could work?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a decision-making shortcut you use at work that you'd never say out loud in a meeting?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something you learned from a job that had nothing to do with the job description?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a coworker or colleague who changed how you think about doing your work?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's the most useless-sounding thing you learned that turned out to matter a lot?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something about your field that people outside it consistently get wrong?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a work habit you have that you know is inefficient but can't seem to break?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something you do at work purely because it makes you feel more in control, not because it's necessary?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a moment at work where you realized you actually knew what you were doing?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something you learned to tolerate about your work that used to bother you a lot?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a skill from a completely unrelated hobby that ended up helping you professionally?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something about the way your field operates that you think is quietly broken?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's a piece of feedback you got early on that you still carry with you?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's something you do differently now than when you started, in a way only you would notice?`, theme: `Work & How People Actually Spend Their Time` },
+      { text: `What's an object you own that you'd genuinely be upset to lose, that isn't valuable to anyone else?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you spend money on that you know is 'unnecessary' but refuse to give up?`, theme: `Objects, Money & Material Life` },
+      { text: `What's a purchase that changed your daily life more than you expected?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you own that belonged to someone else first?`, theme: `Objects, Money & Material Life` },
+      { text: `What's a financial habit you picked up from watching how you grew up with money?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you used to think was a luxury that now feels essential?`, theme: `Objects, Money & Material Life` },
+      { text: `What's an item you've kept for years that has outlived its original purpose?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you almost bought and are relieved you didn't?`, theme: `Objects, Money & Material Life` },
+      { text: `What's a possession that represents a version of yourself you've since moved past?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something cheap that's brought you more satisfaction than something expensive?`, theme: `Objects, Money & Material Life` },
+      { text: `What's an object in your home that has a story most guests wouldn't guess?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you fix instead of replace, even when replacing would be easier?`, theme: `Objects, Money & Material Life` },
+      { text: `What's a splurge you don't regret, even in hindsight?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you inherited — literally or figuratively — that you didn't ask for?`, theme: `Objects, Money & Material Life` },
+      { text: `What's a tool or object you use almost every day that most people don't know exists?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you own multiples of for no practical reason?`, theme: `Objects, Money & Material Life` },
+      { text: `What's a possession you'd grab first in an emergency, after people and pets?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you saved up for that taught you something about patience or priorities?`, theme: `Objects, Money & Material Life` },
+      { text: `What's an everyday object you have strong, oddly specific opinions about?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something you got rid of that you now wish you hadn't?`, theme: `Objects, Money & Material Life` },
+      { text: `What's something that felt permanent to you as a kid that turned out to be temporary?`, theme: `Time, Memory & Change` },
+      { text: `What's a version of yourself from a few years ago that you'd have a hard time explaining to your current self?`, theme: `Time, Memory & Change` },
+      { text: `What's something you do now that your younger self would find boring but you find satisfying?`, theme: `Time, Memory & Change` },
+      { text: `What's a memory that gets clearer with time instead of fuzzier?`, theme: `Time, Memory & Change` },
+      { text: `What's something you thought you'd have figured out by now that you still haven't?`, theme: `Time, Memory & Change` },
+      { text: `What's a year of your life that changed you more than the others?`, theme: `Time, Memory & Change` },
+      { text: `What's something you're nostalgic for that you wouldn't actually want back?`, theme: `Time, Memory & Change` },
+      { text: `What's a way your priorities have quietly reordered themselves without a single big moment causing it?`, theme: `Time, Memory & Change` },
+      { text: `What's something you used to dread that you now look forward to?`, theme: `Time, Memory & Change` },
+      { text: `What's a period of your life you didn't appreciate until it was over?`, theme: `Time, Memory & Change` },
+      { text: `What's something that used to feel like an emergency that no longer does?`, theme: `Time, Memory & Change` },
+      { text: `What's a habit or interest you've had for so long you forget it wasn't always there?`, theme: `Time, Memory & Change` },
+      { text: `What's something you're doing now that you suspect you'll look back on fondly?`, theme: `Time, Memory & Change` },
+      { text: `What's a version of 'success' you had when you were younger that's since changed shape?`, theme: `Time, Memory & Change` },
+      { text: `What's something you thought you'd grow out of that you never did?`, theme: `Time, Memory & Change` },
+      { text: `What's a moment you didn't realize was significant until much later?`, theme: `Time, Memory & Change` },
+      { text: `What's something about getting older that's been better than you expected?`, theme: `Time, Memory & Change` },
+      { text: `What's a memory you're not sure is entirely accurate anymore, but you tell it the same way regardless?`, theme: `Time, Memory & Change` },
+      { text: `What's something you used to do constantly that you now almost never do?`, theme: `Time, Memory & Change` },
+      { text: `What's a way you've become more patient — or less — over time?`, theme: `Time, Memory & Change` },
+      { text: `What's something everyone around you treats as normal that you've privately never agreed with?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a system you interact with regularly that you think is quietly badly designed?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a social norm you follow even though you don't understand the reasoning behind it?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something 'everyone does' that you've decided to just stop doing?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a common piece of advice you think is actually bad, based on your own experience?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's an industry or process you've seen from the inside that changed how much you trust it?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a widely accepted idea you think will look strange in twenty years?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something you think people overvalue that's treated as obviously important?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a rule at an institution you've dealt with that clearly exists to protect the institution, not the people in it?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a convenience in modern life you think is quietly costing us something?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a tradition you think is dying that you'll actually miss?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something you think is genuinely getting better, that people love to complain is getting worse?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a small inefficiency in daily life that bothers you more than it should?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something you think people misunderstand about your line of work or field?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a widely used technology you have a complicated relationship with?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a piece of 'common sense' that you think is actually just common, not sense?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something about how your generation was raised that you think will be judged differently later?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a cultural habit from where you're from that you think outsiders misread completely?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's a system you had to learn to navigate that nobody explained clearly to you?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something you think is undervalued precisely because it's invisible when it's working?`, theme: `Systems, Norms & Quiet Disagreements` },
+      { text: `What's something you learned that completely rearranged how you understood something else?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a subject you avoided in school that you wish you'd taken more seriously?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you understand much better through doing it than you ever did by reading about it?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a question you still don't have a satisfying answer to?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you've tried to explain to someone and realized you didn't actually understand it yourself?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a book, film, or conversation that changed the way you argue or think, not just what you think?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you learned the hard way that you wish someone had just told you directly?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a topic you know just enough about to be dangerous, and would like to know more?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you're curious about that you've never had a reason to actually look into?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a piece of knowledge that felt useless when you learned it and became useful later?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you had to be taught twice, in two very different ways, before it clicked?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a subject where your intuition is consistently wrong, and you have to override it?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you learned from teaching or explaining it to someone else?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a question you ask yourself regularly that you don't think you'll ever fully resolve?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you thought was simple that turned out to be much deeper once you looked closer?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a topic you find yourself bringing up in conversation more than you probably should?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you learned by being wrong in public?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a discipline or field outside your own that you wish you understood better?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you know now that would have completely changed a decision you made years ago?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's a question you're more interested in the older you get?`, theme: `Curiosity, Learning & What Sticks` },
+      { text: `What's something you're good at that you don't actually enjoy doing?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a contradiction in how you live that you've made peace with?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something people assume about you on first meeting that isn't quite accurate?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a version of 'productive' or 'lazy' for you that would look different to an outside observer?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you do that contradicts an opinion you hold?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a strength of yours that used to be a weakness, or vice versa?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something about your personality that only shows up in specific situations?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a way you're different around different groups of people, and which version feels most like you?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you're more anxious about privately than you let on?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a compliment you've received that you don't fully believe, even though you've heard it often?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you do to relax that other people might not consider relaxing at all?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a trait you have that helps you in some situations and actively hurts you in others?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you're more disciplined about than almost anyone would guess?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a fear you've mostly outgrown, and how did that happen?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you pretend to be more confident about than you actually are?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a way you comfort yourself that you've never told anyone about?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you do that you'd describe as a small act of rebellion, even if no one else would notice it?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a part of your personality you think is shaped more by circumstance than by nature?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's something you're still figuring out about yourself, even now?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a way you've surprised yourself in the last year?`, theme: `Self-Perception & Contradiction` },
+      { text: `What's a word or phrase that doesn't translate well between languages or cultures you know?`, theme: `Culture, Language & Communication` },
+      { text: `What's something you communicate differently in one language than another, if you speak more than one?`, theme: `Culture, Language & Communication` },
+      { text: `What's a gesture, tone, or unspoken rule in communication that varies wildly between where you're from and elsewhere?`, theme: `Culture, Language & Communication` },
+      { text: `What's a phrase your family uses that outsiders would find confusing?`, theme: `Culture, Language & Communication` },
+      { text: `What's something you've had to explain repeatedly to people from a different background than yours?`, theme: `Culture, Language & Communication` },
+      { text: `What's a piece of humor that lands differently depending on who's in the room?`, theme: `Culture, Language & Communication` },
+      { text: `What's something you've noticed about how directness or politeness varies between people you know?`, theme: `Culture, Language & Communication` },
+      { text: `What's a way silence is used differently in different relationships or cultures you're familiar with?`, theme: `Culture, Language & Communication` },
+      { text: `What's something you say now that you picked up from a specific friend group or workplace?`, theme: `Culture, Language & Communication` },
+      { text: `What's a story or reference that only makes sense to people who share your background?`, theme: `Culture, Language & Communication` },
+      { text: `What's something that's considered rude in one context you're familiar with and completely normal in another?`, theme: `Culture, Language & Communication` },
+      { text: `What's a way you soften or sharpen how you speak depending on who you're talking to?`, theme: `Culture, Language & Communication` },
+      { text: `What's a name, place, or term you mispronounced for years before finding out the correct way?`, theme: `Culture, Language & Communication` },
+      { text: `What's something about how your family communicates that you've had to explain to a partner or friend?`, theme: `Culture, Language & Communication` },
+      { text: `What's a slang term or expression you use that you can trace to a specific time in your life?`, theme: `Culture, Language & Communication` },
+      { text: `What's something lost in translation, literally or figuratively, that you wish wasn't?`, theme: `Culture, Language & Communication` },
+      { text: `What's a way you express affection that isn't verbal?`, theme: `Culture, Language & Communication` },
+      { text: `What's something about small talk that you find genuinely useful, despite its reputation?`, theme: `Culture, Language & Communication` },
+      { text: `What's a topic you find hard to discuss in your first language but easier in a second, or vice versa?`, theme: `Culture, Language & Communication` },
+      { text: `What's a communication habit you've had to unlearn to be better understood?`, theme: `Culture, Language & Communication` },
+      { text: `What's something that used to scare you that you did anyway, and how did it go?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a risk you didn't take that you still think about?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something uncomfortable you've learned to sit with instead of avoiding?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a fear you have that you know is irrational but can't quite shake?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you avoided for a long time that turned out to be far less bad than expected?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a situation where being uncomfortable actually taught you something useful?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you're still working up the courage to do?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a time you pushed through discomfort and it paid off in a way you didn't expect?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you're cautious about that most people around you aren't?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a fear from childhood that you've completely outgrown?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you do specifically because it scares you a little?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a worst-case scenario you've imagined that, in hindsight, was way overblown?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you had to fail at publicly before you got comfortable with it?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a type of vulnerability you find easier now than you used to?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you avoid not out of fear, but because you've just never had a reason to try it?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a risk you're glad someone talked you into taking?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you're more careful about now because of a specific experience?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a discomfort you've chosen on purpose, like travel, a hard conversation, or a new skill?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's something you thought would be a big deal that turned out to be a non-event?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a fear you have now that you think you'll look back on differently in ten years?`, theme: `Fear, Risk & Discomfort` },
+      { text: `What's a choice you made where you can clearly remember weighing the alternative?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you gave up that you don't regret, even though it was hard at the time?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a decision you made for practical reasons that turned out to matter emotionally too?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you chose not because you wanted it most, but because it made the most sense at the time?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a trade-off in your life you're still actively making, not one you made once and moved on from?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a path you didn't take that you check in on occasionally, out of curiosity rather than regret?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a decision you made quickly that you'd make slowly if you had to do it again?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you chose to prioritize that most people around you don't prioritize the same way?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a compromise you made that you're proud of, rather than one you resent?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a decision where you picked the harder option on purpose?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you almost didn't do because it seemed impractical, and are glad you did anyway?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a choice you made for someone else's benefit that ended up benefiting you too?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you turned down that you've never regretted, even briefly?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a decision you made that surprised the people who know you best?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you chose based on a gut feeling that you couldn't have justified logically at the time?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a version of your life you can picture clearly if one specific choice had gone differently?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a decision that took you much longer to make than it probably should have?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you'd choose differently now, not out of regret, but just because you're different?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's a choice you made that other people questioned but you never doubted?`, theme: `Choices, Trade-offs & Alternate Paths` },
+      { text: `What's something you're currently deciding between, and what's actually making it hard?`, theme: `Choices, Trade-offs & Alternate Paths` },
+    ];
+
+    const icebreakerThemes = [
+      `Invisible Rules & Inherited Habits`,
+      `Turning Points & Accidents`,
+      `Changing Your Mind`,
+      `Skills, Knowledge & Obsolescence`,
+      `Places & How They Change You`,
+      `Relationships & People Who Shaped You`,
+      `Work & How People Actually Spend Their Time`,
+      `Objects, Money & Material Life`,
+      `Time, Memory & Change`,
+      `Systems, Norms & Quiet Disagreements`,
+      `Curiosity, Learning & What Sticks`,
+      `Self-Perception & Contradiction`,
+      `Culture, Language & Communication`,
+      `Fear, Risk & Discomfort`,
+      `Choices, Trade-offs & Alternate Paths`,
+    ];
+
+    // --- STATE ---
+    let activeSet = '321';       // '321' or 'ice'
+    let activeTheme = 'all';     // used only when activeSet === 'ice'
+
+    // --- DOM REFS ---
     const display = document.getElementById('q-display');
     const numInput = document.getElementById('q-number');
     const pullBtn = document.getElementById('q-pull');
     const randomBtn = document.getElementById('q-random');
-    
+    const pageTitle = document.getElementById('page-title');
+    const setIntro = document.getElementById('set-intro');
+    const set321Btn = document.getElementById('set-321');
+    const setIceBtn = document.getElementById('set-ice');
+    const themeFilterBar = document.getElementById('theme-filter-bar');
+    const themeFilterCount = document.getElementById('theme-filter-count');
+
+    const intros = {
+      '321': "This is an archive of 321 questions my friends and I put together to bypass the usual small talk. Pull a number or let the machine decide whenever the conversation hits a dead end.",
+      'ice': "This is a brand new set of questions to test the JS. These questions are browsed and generated after a specific hoca of mine told me that 321 questions are too cringe..."
+    };
+
+    // Build theme filter buttons dynamically from the icebreaker set
+    const themeSet = [...new Set(icebreakers.map(q => q.theme))];
+    themeSet.forEach(theme => {
+      const btn = document.createElement('button');
+      btn.className = 'tag-filter-btn';
+      btn.dataset.theme = theme;
+      btn.textContent = theme;
+      btn.addEventListener('click', () => {
+        activeTheme = theme;
+        document.querySelectorAll('#theme-filter-bar .tag-filter-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.theme === theme);
+        });
+        updateThemeCount();
+        resetDisplay();
+      });
+      themeFilterBar.appendChild(btn);
+    });
+
+    document.querySelector('#theme-filter-bar [data-theme="all"]').addEventListener('click', () => {
+      activeTheme = 'all';
+      document.querySelectorAll('#theme-filter-bar .tag-filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.theme === 'all');
+      });
+      updateThemeCount();
+      resetDisplay();
+    });
+
+    function currentPool() {
+      if (activeSet === '321') return questions.map((text, i) => ({ text, num: i + 1 }));
+      const filtered = activeTheme === 'all' ? icebreakers : icebreakers.filter(q => q.theme === activeTheme);
+      return filtered.map((q, i) => ({ text: q.text, num: i + 1 }));
+    }
+
+    function updateThemeCount() {
+      const pool = currentPool();
+      themeFilterCount.textContent = activeTheme === 'all'
+        ? `${icebreakers.length} questions`
+        : `${pool.length} / ${icebreakers.length} questions`;
+    }
+
+    function resetDisplay() {
+      numInput.value = '';
+      const pool = currentPool();
+      numInput.max = pool.length;
+      numInput.placeholder = `# 1-${pool.length}`;
+      display.innerHTML = `<span class="q-placeholder">Awaiting input...</span>`;
+    }
+
+    function switchSet(set) {
+      activeSet = set;
+      activeTheme = 'all';
+
+      pageTitle.textContent = set === '321' ? '321 Questions' : '300 Icebreakers';
+      setIntro.textContent = intros[set];
+      set321Btn.classList.toggle('active', set === '321');
+      setIceBtn.classList.toggle('active', set === 'ice');
+      themeFilterBar.style.display = set === 'ice' ? 'flex' : 'none';
+
+      if (set === 'ice') {
+        document.querySelectorAll('#theme-filter-bar .tag-filter-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.theme === 'all');
+        });
+        updateThemeCount();
+      }
+
+      resetDisplay();
+    }
+
+    set321Btn.addEventListener('click', () => switchSet('321'));
+    setIceBtn.addEventListener('click', () => switchSet('ice'));
+
     pullBtn.addEventListener('click', () => {
-      const index = parseInt(numInput.value) - 1; 
-      
-      if (index >= 0 && index < questions.length) {
-        display.innerHTML = `<span class="q-number-tag">Question #${index + 1}</span><br><br>${questions[index]}`;
+      const pool = currentPool();
+      const index = parseInt(numInput.value) - 1;
+
+      if (index >= 0 && index < pool.length) {
+        display.innerHTML = `<span class="q-number-tag">Question #${pool[index].num}</span><br><br>${pool[index].text}`;
       } else {
-        display.innerHTML = `<span class="q-placeholder">Error: Please enter a valid number between 1 and ${questions.length}.</span>`;
+        display.innerHTML = `<span class="q-placeholder">Error: Please enter a valid number between 1 and ${pool.length}.</span>`;
       }
     });
 
     randomBtn.addEventListener('click', () => {
-      const randomIndex = Math.floor(Math.random() * questions.length);
-      
-      numInput.value = randomIndex + 1; 
-      
-      display.innerHTML = `<span class="q-number-tag">Question #${randomIndex + 1}</span><br><br>${questions[randomIndex]}`;
+      const pool = currentPool();
+      const randomIndex = Math.floor(Math.random() * pool.length);
+
+      numInput.value = pool[randomIndex].num;
+
+      display.innerHTML = `<span class="q-number-tag">Question #${pool[randomIndex].num}</span><br><br>${pool[randomIndex].text}`;
     });
+
+    // init
+    resetDisplay();
   </script>
 
 </body>
