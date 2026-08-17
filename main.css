@@ -1,9 +1,3 @@
-/* ==========================================================================
-   SUAY'S WEB — MAIN STYLESHEET
-   Color system: beige bg, navy ink, pastel blue accent
-   Type system: Courier New (body/UI), Helvetica (headlines), Georgia (long-form)
-   ========================================================================== */
-
 :root {
   --color-bg: #EFE6DE;
   --color-navy: #191265;
@@ -14,10 +8,6 @@
   --color-gray: #c0c0c0;
 }
 
-/* ==========================================================================
-   GLOBAL / BASE
-   ========================================================================== */
-
 body {
   background-color: var(--color-bg);
   background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
@@ -27,17 +17,12 @@ body {
   color: var(--color-navy);
 }
 
-/* Standalone dotted divider, reusable anywhere */
 .dotted-divider {
   border: none;
   border-top: 2px dotted var(--color-navy);
   margin: 40px 0;
   width: 100%;
 }
-
-/* ==========================================================================
-   HOMEPAGE — HERO / LANDING LAYOUT (index.html)
-   ========================================================================== */
 
 .main-container {
   display: flex;
@@ -132,10 +117,6 @@ body {
   color: var(--color-blue);
 }
 
-/* ==========================================================================
-   SCROLL FEED STYLES
-   ========================================================================== */
-
 .scroll-container {
   max-width: 800px;
   margin: 0 auto 100px auto;
@@ -205,10 +186,6 @@ body {
   background-color: var(--color-navy);
   color: var(--color-blue);
 }
-
-/* ==========================================================================
-   ANTISOCIAL MEDIA BLOG STYLES (antisocial.html)
-   ========================================================================== */
 
 .asm-container {
   max-width: 800px;
@@ -293,10 +270,6 @@ body {
   display: block;
 }
 
-/* ==========================================================================
-   WRITING INDEX LIST STYLES (writing-index.html)
-   ========================================================================== */
-
 .writing-list {
   list-style-type: none;
   padding: 0;
@@ -335,9 +308,6 @@ body {
   border-bottom: 2px dotted var(--color-blue);
 }
 
-/* ==========================================================================
-   IPE GLOSSARY STYLES (glossary.html)
-   ========================================================================== */
 
 .glossary-summary {
   cursor: pointer;
@@ -368,7 +338,6 @@ body {
   text-align: justify;
 }
 
-/* --- Tag filter bar --- */
 
 .tag-filter-bar {
   display: flex;
@@ -421,10 +390,6 @@ body {
     margin-top: 5px;
   }
 }
-
-/* ==========================================================================
-   321 QUESTIONS MACHINE STYLES (questions.html)
-   ========================================================================== */
 
 .q-machine {
   border: 3px double var(--color-navy);
@@ -528,10 +493,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* ==========================================================================
-   HTML NATIVE CV STYLES (cv.html)
-   ========================================================================== */
-
 .cv-header {
   text-align: center;
   margin-bottom: 50px;
@@ -630,11 +591,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* ==========================================================================
-   RESPONSIVE — TABLET (≤900px)
-   All rules from every 900px block in the old file, consolidated here.
-   ========================================================================== */
-
 @media (max-width: 900px) {
   .main-container {
     flex-direction: column;
@@ -689,10 +645,6 @@ body {
   }
 }
 
-/* ==========================================================================
-   RESPONSIVE — MOBILE (≤600px)
-   All rules from every 600px block in the old file, consolidated here.
-   ========================================================================== */
 
 @media (max-width: 600px) {
   .writing-item {

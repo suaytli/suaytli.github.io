@@ -8,13 +8,12 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="main.css?v=12" rel="stylesheet" type="text/css" media="all">
 
-  <!-- Turkish-safe font fallbacks (fixes missing İ, ı, ğ, ş, ç, ö, ü glyphs) -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&family=Noto+Serif:ital,wght@0,400;1,400&family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Same font stacks as main.css, with Noto equivalents inserted first
-       so Turkish characters render correctly. Visual weight/size unchanged. */
+
     #cv-en, #cv-tr,
     #cv-en *, #cv-tr * {
       font-family: "Noto Sans Mono", "Courier New", Courier, monospace;
@@ -30,7 +29,7 @@
     }
   </style>
 
-  <!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCJQ44WMD5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -48,11 +47,11 @@
       <div>
         <a href="index.html" class="cyan-tag">Home</a> <span class="blue-text">> Curriculum Vitae</span>
       </div>
-      <!-- Language Switcher Button -->
+
       <button id="lang-toggle" class="q-btn" style="padding: 4px 10px; font-size: 0.9rem;">TR</button>
     </div>
 
-    <!-- ENGLISH CV CONTAINER -->
+
     <div id="cv-en">
       <div class="cv-header">
         <h1 class="cv-name">Suay Tosyalı</h1>
@@ -177,7 +176,7 @@
       </div>
     </div>
 
-    <!-- TURKISH CV CONTAINER (Hidden by default) -->
+
     <div id="cv-tr" style="display: none;">
       <div class="cv-header">
         <h1 class="cv-name">Suay Tosyalı</h1>
@@ -304,24 +303,24 @@
 
   </div>
 
-  <!-- LANGUAGE TOGGLE SCRIPT -->
+
   <script>
     const langBtn = document.getElementById('lang-toggle');
     const cvEn = document.getElementById('cv-en');
     const cvTr = document.getElementById('cv-tr');
     
-    // We start in English
+
     let isEnglish = true;
 
     langBtn.addEventListener('click', () => {
       if (isEnglish) {
-        // Switch to Turkish
+
         cvEn.style.display = 'none';
         cvTr.style.display = 'block';
         langBtn.innerText = 'EN';
         isEnglish = false;
       } else {
-        // Switch to English
+        
         cvEn.style.display = 'block';
         cvTr.style.display = 'none';
         langBtn.innerText = 'TR';
